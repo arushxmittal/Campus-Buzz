@@ -11,7 +11,7 @@
   <!-- Navbar -->
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
     <nav class="mx-auto  sm:px-6 bg-gray-200 ">
-        <div class="flex h-16 items-center justify-between gap-3">
+      <div class="flex h-16 items-center justify-between gap-3">
         <a href="#" class="flex items-center gap-2">
           <span class="h-9 w-9 grid place-items-center rounded-xl bg-blue-600 text-white font-bold">CB</span>
           <span class="font-semibold tracking-tight">CAMPUS BUZZ</span>
@@ -50,13 +50,71 @@
   </header>
 
   <!-- Hero / Description -->
-  <section class="text-center py-16 bg-gradient-to-r from-blue-100 to-purple-100">
+  <section id="home" class="text-center py-16 bg-gradient-to-r from-blue-100 to-purple-100">
     <h1 class="text-4xl font-bold text-blue-700">Connecting Students with College Events</h1>
     <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
       Our platform promotes and connects students with exciting college events – from fests and workshops to live shows.
     </p>
   </section>
-
+  
+  <section class="relative mb-24 md:mb-32 pt-16 bg-gradient-to-r from-blue-100 to-purple-100">
+  
+    <h1 class="text-3xl sm:text-4xl md:text-5xl text-center font-bold mb-12 lg:text-7xl">
+      Highlights Of The Week
+    </h1>
+  
+    <div class="w-full relative h-[600px] overflow-hidden" role="region" aria-label="Image Slider">
+  
+      <!-- Slide 1 -->
+      <div id="slide-0" class="carousel-slide absolute w-[280px] sm:w-[320px] md:w-[400px] h-[400px] bg-gray-800 text-white rounded-lg p-1 mb-36 transition-all duration-500">
+        <img class="object-cover w-full h-full rounded-lg"
+          src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652244/WhatsApp_Image_2025-02-21_at_11.08.30_86904c17_mzidmn.jpg"
+          alt="Event 1">
+      </div>
+  
+      <!-- Slide 2 -->
+      <div id="slide-1" class="carousel-slide absolute w-[280px] sm:w-[320px] md:w-[400px] h-[400px] bg-gray-800 text-white rounded-lg p-1 mb-36 transition-all duration-500">
+        <img class="object-cover w-full h-full rounded-lg"
+          src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652255/Screenshot_2025-03-22_193123_icsp0c.png"
+          alt="Event 2">
+      </div>
+  
+      <!-- Slide 3 -->
+      <div id="slide-2" class="carousel-slide absolute w-[280px] sm:w-[320px] md:w-[400px] h-[400px] bg-gray-800 text-white rounded-lg p-1 mb-36 transition-all duration-500">
+        <img class="object-cover w-full h-full rounded-lg"
+          src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652259/Screenshot_2025-03-22_193154_mxegoy.png"
+          alt="Event 3">
+      </div>
+  
+      <!-- Slide 4 -->
+      <div id="slide-3" class="carousel-slide absolute w-[280px] sm:w-[320px] md:w-[400px] h-[400px] bg-gray-800 text-white rounded-lg p-1 mb-36 transition-all duration-500">
+        <img class="object-cover w-full h-full rounded-lg"
+          src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652261/Screenshot_2025-03-22_193313_nlviha.png"
+          alt="Event 4">
+      </div>
+  
+      <!-- Slide 5 -->
+      <div id="slide-4" class="carousel-slide absolute w-[280px] sm:w-[320px] md:w-[400px] h-[400px] bg-gray-800 text-white rounded-lg p-1 mb-36 transition-all duration-500">
+        <img class="object-cover w-full h-full rounded-lg"
+          src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652245/WhatsApp_Image_2025-02-25_at_11.36.11_abd4a397_gnjo9n.jpg"
+          alt="Event 5">
+      </div>
+  
+      <!-- Controls -->
+      <button id="prevBtn" class="absolute top-1/2 -translate-y-1/2 left-2 md:left-4 text-white bg-black/50 hover:bg-black/70 transition-colors rounded-full p-2" aria-label="Previous slide">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+      </button>
+  
+      <button id="nextBtn" class="absolute top-1/2 -translate-y-1/2 right-2 md:right-4 text-white bg-black/50 hover:bg-black/70 transition-colors rounded-full p-2" aria-label="Next slide">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+      </button>
+    </div>
+  </section>
+  
   <!-- Featured Events -->
   <section class="py-12 container mx-auto px-6">
     <h2 class="text-2xl font-semibold text-gray-800 mb-6">🌟 Featured Events</h2>
@@ -123,7 +181,6 @@
         </form>
       </section>
   </div>
-
   <!-- Chatbot -->
   <div id="chatbot" class="fixed bottom-6 right-6">
     <button class="bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700">
@@ -142,6 +199,141 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Carousel functionality
+    class Carousel {
+      constructor() {
+        this.slides = document.querySelectorAll('.carousel-slide');
+        this.currentSlide = 2; // Start with middle slide (index 2)
+        this.totalSlides = this.slides.length;
+        
+        this.prevBtn = document.getElementById('prevBtn');
+        this.nextBtn = document.getElementById('nextBtn');
+        
+        this.init();
+      }
+      
+      init() {
+        this.updateSlides();
+        
+        // Add event listeners
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
+        
+        // Auto-play (optional)
+        this.autoPlay();
+        
+        // Pause auto-play on hover
+        const carousel = document.querySelector('[role="region"]');
+        carousel.addEventListener('mouseenter', () => this.pauseAutoPlay());
+        carousel.addEventListener('mouseleave', () => this.autoPlay());
+      }
+      
+      updateSlides() {
+        this.slides.forEach((slide, index) => {
+          const position = index - this.currentSlide;
+          let transform = '';
+          let opacity = 0.6;
+          let zIndex = 1;
+          let filter = 'blur(2px)';
+          let scale = 0.8;
+          
+          switch(position) {
+            case -2:
+              transform = 'translateX(calc(-50% - 320px)) scale(0.7) perspective(800px) rotateY(5deg)';
+              opacity = 0.3;
+              break;
+            case -1:
+              transform = 'translateX(calc(-50% - 160px)) scale(0.9) perspective(800px) rotateY(3deg)';
+              opacity = 0.6;
+              zIndex = 4;
+              break;
+            case 0:
+              transform = 'translateX(-50%) scale(1)';
+              opacity = 1;
+              zIndex = 10;
+              filter = 'none';
+              break;
+            case 1:
+              transform = 'translateX(calc(-50% + 160px)) scale(0.9) perspective(800px) rotateY(-3deg)';
+              opacity = 0.6;
+              zIndex = 4;
+              break;
+            case 2:
+              transform = 'translateX(calc(-50% + 320px)) scale(0.7) perspective(800px) rotateY(-5deg)';
+              opacity = 0.3;
+              break;
+            default:
+              if (position < -2) {
+                transform = 'translateX(calc(-50% - 400px)) scale(0.6)';
+                opacity = 0;
+              } else {
+                transform = 'translateX(calc(-50% + 400px)) scale(0.6)';
+                opacity = 0;
+              }
+          }
+          
+          slide.style.left = '50%';
+          slide.style.transform = transform;
+          slide.style.opacity = opacity;
+          slide.style.zIndex = zIndex;
+          slide.style.filter = filter;
+        });
+      }
+      
+      nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+        this.updateSlides();
+      }
+      
+      prevSlide() {
+        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+        this.updateSlides();
+      }
+      
+      autoPlay() {
+        this.pauseAutoPlay();
+        this.autoPlayInterval = setInterval(() => {
+          this.nextSlide();
+        }, 4000);
+      }
+      
+      pauseAutoPlay() {
+        if (this.autoPlayInterval) {
+          clearInterval(this.autoPlayInterval);
+        }
+      }
+    }
+
+    // Mobile menu functionality
+    function initMobileMenu() {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Search functionality
+    function initSearch() {
+      const searchInput = document.getElementById('searchInput');
+      
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        // Add your search logic here
+        console.log('Searching for:', query);
+      });
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      new Carousel();
+      initMobileMenu();
+      initSearch();
+    });
+  </script>
 
 </body>
 </html>
