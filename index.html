@@ -6,7 +6,7 @@
   <title>CAMPUS BUZZ</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-blue-100 to-purple-100 text-gray-800">
+<body class="bg-gradient-to-l from-gray-800 via-blue-700 to-gray-900 text-gray-800">
 
   <!-- Navbar -->
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
@@ -30,7 +30,7 @@
             <a href="#upcoming" class="text-sm font-medium hover:text-red-600">Upcoming</a>
             <a href="#past" class="text-sm font-medium hover:text-red-600">Past</a>
             <a href="#contact" class="text-sm font-medium hover:text-red-600">Contact Us</a>
-            <a href="#profile" class="text-sm font-medium hover:text-red-600">Profile</a>
+            <a href="Profile.html" class="text-sm font-medium hover:text-red-600">Profile</a>
           </div>
         <button id="menuBtn" class="md:hidden p-2 rounded-xl border hover:bg-slate-100" aria-label="Open menu">
           <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -50,14 +50,14 @@
   </header>
 
   <!-- Hero / Description -->
-  <section id="home" class="text-center py-16 bg-gradient-to-r from-yellow-100 to-yellow-100">
+  <section id="home" class="text-center py-16 bg-gradient-to-l from-gray-800 via-blue-700 to-gray-900">
     <h1 class="text-4xl font-bold text-blue-700">Connecting Students with College Events</h1>
     <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
       Our platform promotes and connects students with exciting college events – from fests and workshops to live shows.
     </p>
   </section>
   
-  <section class="relative mb-24 md:mb-32 pt-16 bg-gradient-to-r from-yellow-100 to-yellow-100">
+  <section class="relative mb-24 md:mb-32 pt-16 bg-gradient-to-l from-gray-800 via-blue-700 to-gray-900">
   
     <h1 class="text-3xl sm:text-4xl md:text-5xl text-center font-bold mb-12 lg:text-7xl">
       Highlights Of The Week
@@ -118,57 +118,228 @@
   <!-- Featured Events -->
   <section class="py-12 container mx-auto px-6">
     <h2 class="text-2xl font-semibold text-gray-800 mb-6">🌟 Featured Events</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://via.placeholder.com/400x200" class="w-full h-40 object-cover">
-        <div class="p-4">
-          <h3 class="font-semibold text-lg">Tech Fest 2025</h3>
-          <p class="text-sm text-gray-600">Join the biggest college tech fest with hackathons, AI workshops, and more!</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-7 pb-12">
+      
+      <!-- Tech Fest 2025 -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Tech Fest 2025" style="perspective: 1000px;">
+        <img alt="Tech Fest 2025" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652259/Screenshot_2025-03-22_193154_mxegoy.png" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Innovation</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Tech Fest 2025</h3>
+          <p class="text-lg text-neutral-400 mb-2">2025-04-15</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Join the biggest college tech fest with hackathons, AI workshops, and more!</p>
         </div>
       </div>
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://via.placeholder.com/400x200" class="w-full h-40 object-cover">
-        <div class="p-4">
-          <h3 class="font-semibold text-lg">Cultural Night</h3>
-          <p class="text-sm text-gray-600">A celebration of talent, music, and dance performances across colleges.</p>
+
+      <!-- Cultural Night -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Cultural Night" style="perspective: 1000px;">
+        <img alt="Cultural Night" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652261/Screenshot_2025-03-22_193313_nlviha.png" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Culture</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Cultural Night</h3>
+          <p class="text-lg text-neutral-400 mb-2">2025-05-10</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">A celebration of talent, music, and dance performances across colleges.</p>
         </div>
       </div>
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <img src="https://via.placeholder.com/400x200" class="w-full h-40 object-cover">
-        <div class="p-4">
-          <h3 class="font-semibold text-lg">Entrepreneurship Summit</h3>
-          <p class="text-sm text-gray-600">Network with leaders and startup founders in this one-of-a-kind summit.</p>
+
+      <!-- Entrepreneurship Summit -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Entrepreneurship Summit" style="perspective: 1000px;">
+        <img alt="Entrepreneurship Summit" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652245/WhatsApp_Image_2025-02-25_at_11.36.11_abd4a397_gnjo9n.jpg" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Business</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Entrepreneurship Summit</h3>
+          <p class="text-lg text-neutral-400 mb-2">2025-06-20</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Network with leaders and startup founders in this one-of-a-kind summit.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Live, Upcoming, Past Events -->
+  <!-- Live Events -->
   <section id="live" class="py-12 container mx-auto px-6">
     <h2 class="text-2xl font-semibold text-gray-800 mb-6">🔥 Live Events</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-6 bg-white shadow rounded-xl">DJ Night</div>
-      <div class="p-6 bg-white shadow rounded-xl">Coding Battle</div>
-      <div class="p-6 bg-white shadow rounded-xl">Art Exhibition</div>
-    </div>
-    </section>
-  <section id="upcoming" class="py-12 container mx-auto px-6">  
-    <h2 class="text-2xl font-semibold text-gray-800 my-6">📅 Upcoming Events</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-6 bg-white shadow rounded-xl">Hackathon 2025</div>
-      <div class="p-6 bg-white shadow rounded-xl">Sports Meet</div>
-      <div class="p-6 bg-white shadow rounded-xl">Photography Contest</div>
-    </div>
-    </section>
-  <section id="past" class="py-12 container mx-auto px-6">
-    <h2 class="text-2xl font-semibold text-gray-800 my-6">⏳ Past Events</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-6 bg-white shadow rounded-xl">Freshers' Party</div>
-      <div class="p-6 bg-white shadow rounded-xl">Debate Competition</div>
-      <div class="p-6 bg-white shadow rounded-xl">Workshop on AI</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-7 pb-12">
+      
+      <!-- DJ Night -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for DJ Night" style="perspective: 1000px;">
+        <img alt="DJ Night" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://via.placeholder.com/400x600/FF6B6B/FFFFFF?text=DJ+Night" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Music</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">DJ Night</h3>
+          <p class="text-lg text-neutral-400 mb-2">Live Now</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Epic beats and electrifying music happening right now!</p>
+        </div>
+        <span class="absolute top-3 right-3 bg-red-500 backdrop-blur-sm text-xs font-medium tracking-wider text-white rounded-full px-2 py-0.5">LIVE</span>
+      </div>
+
+      <!-- Coding Battle -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Coding Battle" style="perspective: 1000px;">
+        <img alt="Coding Battle" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://via.placeholder.com/400x600/4ECDC4/FFFFFF?text=Coding+Battle" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Competition</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Coding Battle</h3>
+          <p class="text-lg text-neutral-400 mb-2">Live Now</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Intense coding competition with top programmers battling it out!</p>
+        </div>
+        <span class="absolute top-3 right-3 bg-red-500 backdrop-blur-sm text-xs font-medium tracking-wider text-white rounded-full px-2 py-0.5">LIVE</span>
+      </div>
+
+      <!-- Art Exhibition -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Art Exhibition" style="perspective: 1000px;">
+        <img alt="Art Exhibition" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://via.placeholder.com/400x600/9B59B6/FFFFFF?text=Art+Exhibition" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Art</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Art Exhibition</h3>
+          <p class="text-lg text-neutral-400 mb-2">Live Now</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Explore stunning artworks by talented student artists.</p>
+        </div>
+        <span class="absolute top-3 right-3 bg-red-500 backdrop-blur-sm text-xs font-medium tracking-wider text-white rounded-full px-2 py-0.5">LIVE</span>
+      </div>
     </div>
   </section>
-  <div class="place-items-center bg-gradient-to-r from-blue-100 to-purple-100 border border-gray-800 rounded-2xl">
+
+  <!-- Upcoming Events -->  
+  <section id="upcoming" class="py-12 container mx-auto px-6">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">📅 Upcoming Events</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-7 pb-12">
+      
+      <!-- Hackathon 2025 -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Hackathon 2025" style="perspective: 1000px;">
+        <img alt="Hackathon 2025" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652255/Screenshot_2025-03-22_193123_icsp0c.png" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Technology</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Hackathon 2025</h3>
+          <p class="text-lg text-neutral-400 mb-2">2025-09-15</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">24-hour coding marathon with exciting prizes and challenges.</p>
+        </div>
+      </div>
+
+      <!-- Sports Meet -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Sports Meet" style="perspective: 1000px;">
+        <img alt="Sports Meet" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://via.placeholder.com/400x600/27AE60/FFFFFF?text=Sports+Meet" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Sports</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Sports Meet</h3>
+          <p class="text-lg text-neutral-400 mb-2">2025-10-08</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Annual inter-college sports championship with multiple categories.</p>
+        </div>
+      </div>
+
+      <!-- Photography Contest -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Photography Contest" style="perspective: 1000px;">
+        <img alt="Photography Contest" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://via.placeholder.com/400x600/F39C12/FFFFFF?text=Photography+Contest" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Art</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Photography Contest</h3>
+          <p class="text-lg text-neutral-400 mb-2">2025-11-12</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Capture the perfect moment and win amazing prizes!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Past Events -->
+  <section id="past" class="py-12 container mx-auto px-6">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">⏳ Past Events</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-7 pb-12">
+      
+      <!-- Freshers' Party -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Freshers' Party" style="perspective: 1000px;">
+        <img alt="Freshers' Party" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://via.placeholder.com/400x600/E74C3C/FFFFFF?text=Freshers+Party" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Welcome</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Freshers' Party</h3>
+          <p class="text-lg text-neutral-400 mb-2">2025-01-20</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Welcome celebration for new students with fun activities and networking.</p>
+        </div>
+      </div>
+
+      <!-- Debate Competition -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Debate Competition" style="perspective: 1000px;">
+        <img alt="Debate Competition" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://via.placeholder.com/400x600/8E44AD/FFFFFF?text=Debate+Competition" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Academic</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Debate Competition</h3>
+          <p class="text-lg text-neutral-400 mb-2">2025-02-14</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Intellectual battle of ideas and persuasive arguments.</p>
+        </div>
+      </div>
+
+      <!-- Workshop on AI -->
+      <div class="group relative w-auto cursor-pointer h-[400px] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-[1.03] focus:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" tabindex="0" role="button" aria-label="View details for Workshop on AI" style="perspective: 1000px;">
+        <img alt="Workshop on AI" loading="lazy" class="h-full w-full object-cover transition-all duration-500 group-hover:blur-[4px] group-hover:scale-[1.05] group-focus:blur-[4px] group-focus:scale-[1.05]" src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742652244/WhatsApp_Image_2025-02-21_at_11.08.30_86904c17_mzidmn.jpg" style="color: transparent;">
+        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm rounded-full p-6 transition-all duration-300 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 group-focus:opacity-100 group-focus:scale-100 hover:bg-white/50 z-10" aria-label="Open image in full screen" type="button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="absolute inset-0 flex flex-col justify-end pb-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 p-6">
+          <p class="text-xl uppercase tracking-wider text-neutral-300 mb-1">Workshop</p>
+          <h3 class="text-2xl font-semibold tracking-tight mb-1 text-white">Workshop on AI</h3>
+          <p class="text-lg text-neutral-400 mb-2">2025-03-05</p>
+          <p class="text-xl text-neutral-300 leading-snug line-clamp-3">Learn cutting-edge AI technologies and machine learning techniques.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <div class="place-items-center bg-gradient-to-r from-blue-100 to-purple-100 border border-gray-800 rounded-2xl mx-6">
     <section id="contact" class="mt-16 p-4 scroll-mt-24">
         <h2 class="text-2xl font-bold mb-2">Contact Us</h2>
         <p class="text-slate-600 mb-4">Have a club or event to add? Reach us at <a href="mailto:events@chitkara.edu" class="text-red-600 underline">events@chitkara.edu</a>.</p>
@@ -181,6 +352,7 @@
         </form>
       </section>
   </div>
+
   <!-- Chatbot -->
   <div id="chatbot" class="fixed bottom-6 right-6">
     <button class="bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700">
