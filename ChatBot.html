@@ -92,6 +92,58 @@
       background: #3730a3;
     }
   </style>
+<body>
 
+  <div class="chat-container">
+    <div class="chat-header">Campus Buzz Chatbot</div>
+    <div class="chat-box" id="chat-box"></div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Type your message...">
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+
+    function addMessage(content, sender) {
+      const msg = document.createElement("div");
+      msg.classList.add("message", sender);
+      msg.innerText = content;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function botReply(userMsg) {
+      let reply = "I'm not sure I understand. Can you rephrase?";
+      userMsg = userMsg.toLowerCase();
+
+      if (userMsg.includes("hello") || userMsg.includes("hi")) {
+        reply = "Hello! 👋 How can I help you with Campus Buzz today?";
+      } else if (userMsg.includes("event")) {
+        reply = "We have upcoming events this week! 🎉 Check the events page for details.";
+      } else if (userMsg.includes("contact")) {
+        reply = "You can contact us at: campusbuzz@university.edu";
+      }
+
+      setTimeout(() => {
+        addMessage(reply, "bot");
+      }, 800);
+    }
+
+    sendBtn.addEventListener("click", () => {
+      const text = userInput.value.trim();
+      if (text === "") return;
+      addMessage(text, "user");
+      userInput.value = "";
+      botReply(text);
+    });
+
+    userInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendBtn.click();
+    });
+  </script>
   </body>
 </html>
