@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Campus Buzz Profile</title>
   <style>
+    /* (Your existing styles here - unchanged for brevity) */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       background: #f3f4f6;
     }
-
     .profile-container {
       max-width: 900px;
       margin: 40px auto;
@@ -20,20 +20,15 @@
       box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
       overflow: hidden;
     }
-
-    /* Cover */
     .cover {
       background: linear-gradient(135deg, rgb(255, 255, 71));
       height: 150px;
     }
-
-    /* Profile Info */
     .profile-info {
       display: flex;
       padding: 20px;
       position: relative;
     }
-
     .profile-info img {
       width: 120px;
       height: 120px;
@@ -42,63 +37,43 @@
       margin-top: -60px;
       background: #fff;
     }
-
     .info {
       margin-left: 20px;
       flex: 1;
     }
-
     .info h2 {
       margin: 5px 0;
       font-size: 24px;
     }
-
     .info p {
       margin: 3px 0;
       color: #555;
     }
-
-    /* Stats */
     .stats {
       display: flex;
       gap: 30px;
       margin: 15px 0;
     }
-
     .stats div {
       text-align: center;
     }
-
     .stats span {
       display: block;
       font-weight: bold;
       font-size: 18px;
     }
-
-    /* Buttons */
     .actions {
       margin-top: 10px;
     }
-
     .actions button {
       padding: 8px 14px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       margin-right: 10px;
-    }
-
-    .edit-btn {
-      background:black;
+      background: black;
       color: white;
     }
-
-    .msg-btn {
-      background:black;
-      color: white;
-    }
-
-    /* Tabs */
     .tabs {
       display: flex;
       justify-content: center;
@@ -106,7 +81,6 @@
       border-top: 1px solid #eee;
       border-bottom: 1px solid #eee;
     }
-
     .tabs button {
       flex: 1;
       padding: 12px;
@@ -115,12 +89,9 @@
       font-weight: bold;
       cursor: pointer;
     }
-
     .tabs button:hover {
       background: #f3f4f6;
     }
-
-    /* Post Container */
     .post {
       background: white;
       border: 1px solid #ddd;
@@ -129,49 +100,40 @@
       padding: 15px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-
     .post-header {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
     .post-header img {
       width: 40px;
       height: 40px;
       border-radius: 50%;
     }
-
     .post-header div {
       flex: 1;
     }
-
     .post-header h4 {
       margin: 0;
       font-size: 16px;
     }
-
     .post-header p {
       margin: 0;
       font-size: 12px;
       color: #777;
     }
-
     .post-content {
       margin-top: 10px;
     }
-
     .post-content p {
       font-size: 14px;
       color: #333;
     }
-
     .post-content img {
       margin-top: 10px;
       width: 100%;
       border-radius: 8px;
     }
-
     .post-footer {
       margin-top: 10px;
       display: flex;
@@ -179,7 +141,6 @@
       font-size: 14px;
       color: #555;
     }
-
     .post-footer button {
       border: none;
       background: none;
@@ -187,69 +148,98 @@
       color: #3b82f6;
       font-weight: bold;
     }
-
   </style>
 </head>
 <body>
 
-  <div class="profile-container">
-    <!-- Cover -->
-    <div class="cover"></div>
-
-    <!-- Profile Info -->
-    <div class="profile-info">
-      <img src="https://via.placeholder.com/120" alt="Profile Picture">
-      <div class="info">
-        <h2>Arush Mittal</h2>
-        <p>🎓 B.Tech CSE | 3rd Year</p>
-        <p>📍 New Delhi, India</p>
-        <p>💡 “Sharing buzz around campus, coding & coffee ☕”</p>
-
-        <!-- Stats -->
-        <div class="stats">
-          <div><span>45</span>Posts</div>
-          <div><span>320</span>Followers</div>
-          <div><span>210</span>Following</div>
-          <div><span>12</span>Events</div>
-        </div>
-
-        <!-- Buttons -->
-        <div class="actions">
-          <button class="edit-btn">Edit Profile</button>
-          <button class="msg-btn">Message</button>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Tabs -->
-    <div class="tabs">
-      <button>Posts</button>
-      <button>Events</button>
-      <button>Achievements</button>
-    </div>
-
-    <!-- Post Containers -->
-    <div class="post">
-      <div class="post-header">
-        <img src="https://via.placeholder.com/40" alt="User">
-        <div>
-          <h4>Arush Mittal</h4>
-          <p>2 hours ago</p>
-        </div>
-      </div>
-      <div class="post-content">
-        <p>Had a great time at the Campus Hackathon 2025! Learned so much and met amazing people 🚀🔥</p>
-        <img src="https://via.placeholder.com/600x300" alt="Post Image">
-      </div>
-      <div class="post-footer">
-        <button>👍 Like</button>
-        <button>💬 Comment</button>
-        <button>🔗 Share</button>
-      </div>
-    </div>
-
+  <div class="profile-container" id="profile-container">
+    <!-- Dynamic content will be injected here -->
   </div>
+
+  <script>
+    // Input parameters as a JavaScript object
+    const userProfile = {
+      name: "Arush Mittal",
+      profilePic: "https://via.placeholder.com/120",
+      education: "🎓 B.Tech CSE | 3rd Year",
+      location: "📍 New Delhi, India",
+      bio: "💡 “Sharing buzz around campus, coding & coffee ☕”",
+      stats: {
+        posts: 45,
+        followers: 320,
+        following: 210,
+        events: 12
+      },
+      posts: [
+        {
+          userPic: "https://via.placeholder.com/40",
+          userName: "Arush Mittal",
+          time: "2 hours ago",
+          contentText: "Had a great time at the Campus Hackathon 2025! Learned so much and met amazing people 🚀🔥",
+          contentImage: "https://via.placeholder.com/600x300"
+        },
+        // You can add more post objects here...
+      ]
+    };
+
+    // Function to render the profile HTML dynamically
+    function renderProfile(profile) {
+      return `
+        <div class="cover"></div>
+        <div class="profile-info">
+          <img src="${profile.profilePic}" alt="Profile Picture" />
+          <div class="info">
+            <h2>${profile.name}</h2>
+            <p>${profile.education}</p>
+            <p>${profile.location}</p>
+            <p>${profile.bio}</p>
+
+            <div class="stats">
+              <div><span>${profile.stats.posts}</span>Posts</div>
+              <div><span>${profile.stats.followers}</span>Followers</div>
+              <div><span>${profile.stats.following}</span>Following</div>
+              <div><span>${profile.stats.events}</span>Events</div>
+            </div>
+
+            <div class="actions">
+              <button class="edit-btn">Edit Profile</button>
+              <button class="msg-btn">Message</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button>Posts</button>
+          <button>Events</button>
+          <button>Achievements</button>
+        </div>
+
+        ${profile.posts.map(post => `
+          <div class="post">
+            <div class="post-header">
+              <img src="${post.userPic}" alt="User" />
+              <div>
+                <h4>${post.userName}</h4>
+                <p>${post.time}</p>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>${post.contentText}</p>
+              ${post.contentImage ? `<img src="${post.contentImage}" alt="Post Image" />` : ''}
+            </div>
+            <div class="post-footer">
+              <button>👍 Like</button>
+              <button>💬 Comment</button>
+              <button>🔗 Share</button>
+            </div>
+          </div>
+        `).join('')}
+      `;
+    }
+
+    // Inject the generated HTML into the container
+    document.getElementById('profile-container').innerHTML = renderProfile(userProfile);
+  </script>
 
 </body>
 </html>
