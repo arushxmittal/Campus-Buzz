@@ -50,57 +50,58 @@
   </div>
 
   <script>
-    const loginTab = document.getElementById('loginTab');
-    const signupTab = document.getElementById('signupTab');
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
+  const loginTab = document.getElementById('loginTab');
+  const signupTab = document.getElementById('signupTab');
+  const loginForm = document.getElementById('loginForm');
+  const signupForm = document.getElementById('signupForm');
 
-    // Switch tabs
-    loginTab.addEventListener('click', () => {
-      loginForm.classList.remove('hidden');
-      signupForm.classList.add('hidden');
-      loginTab.classList.add('bg-blue-600', 'text-white');
-      signupTab.classList.remove('bg-blue-600', 'text-white');
-      signupTab.classList.add('bg-gray-200', 'text-gray-700');
-    });
+  // Switch tabs
+  loginTab.addEventListener('click', () => {
+    loginForm.classList.remove('hidden');
+    signupForm.classList.add('hidden');
+    loginTab.classList.add('bg-blue-600', 'text-white');
+    signupTab.classList.remove('bg-blue-600', 'text-white');
+    signupTab.classList.add('bg-gray-200', 'text-gray-700');
+  });
 
-    signupTab.addEventListener('click', () => {
-      signupForm.classList.remove('hidden');
-      loginForm.classList.add('hidden');
-      signupTab.classList.add('bg-blue-600', 'text-white');
-      loginTab.classList.remove('bg-blue-600', 'text-white');
-      loginTab.classList.add('bg-gray-200', 'text-gray-700');
-    });
+  signupTab.addEventListener('click', () => {
+    signupForm.classList.remove('hidden');
+    loginForm.classList.add('hidden');
+    signupTab.classList.add('bg-blue-600', 'text-white');
+    loginTab.classList.remove('bg-blue-600', 'text-white');
+    loginTab.classList.add('bg-gray-200', 'text-gray-700');
+  });
 
-    // Handle Sign Up
-    signupForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('signupName').value;
-      const email = document.getElementById('signupEmail').value;
-      const password = document.getElementById('signupPassword').value;
+  // Handle Sign Up
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
 
-      const user = { name, email, password };
-      localStorage.setItem('campusbuzz_user', JSON.stringify(user));
-      alert('Account created successfully! You can now log in.');
-      signupForm.reset();
-      loginTab.click(); // Switch to login tab automatically
-    });
+    const user = { name, email, password };
+    localStorage.setItem('campusbuzz_user', JSON.stringify(user));
+    alert('Account created successfully! You can now log in.');
+    signupForm.reset();
+    loginTab.click(); // Switch to login tab automatically
+  });
 
-    // Handle Login
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value;
-      const password = document.getElementById('loginPassword').value;
+  // Handle Login
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
 
-      const storedUser = JSON.parse(localStorage.getItem('campusbuzz_user'));
+    const storedUser = JSON.parse(localStorage.getItem('campusbuzz_user'));
 
-      if (storedUser && storedUser.email === email && storedUser.password === password) {
-        alert('Login successful!');
-        window.location.href = 'profile.html'; // Redirect to profile page
-      } else {
-        alert('Invalid email or password!');
-      }
-    });
-  </script>
+    if (storedUser && storedUser.email === email && storedUser.password === password) {
+      alert('Login successful!');
+      window.location.href = 'index.html'; // ✅ Redirect to home page
+    } else {
+      alert('Invalid email or password!');
+    }
+  });
+</script>
+
 </body>
 </html>
