@@ -635,83 +635,87 @@ html, body {
 
   <!-- FEATURED CLUBS SECTION -->
   <section id="featured-clubs" class="py-20 bg-gray-50 cursor-default-must">
-      <div class="max-w-7xl mx-auto px-6">
-          <div class="text-center mb-16">
-              <h2 class="text-4xl font-bold text-gray-800 mb-6" contenteditable="false">Featured Clubs &amp; Organizations</h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto" contenteditable="false">
-                  Discover the diverse range of clubs that make our campus vibrant and engaging
-              </p>
-          </div>
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6" contenteditable="false">Featured Clubs & Organizations</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto" contenteditable="false">
+                Discover the diverse range of clubs that make our campus vibrant and engaging
+            </p>
+        </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              <div class="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
-                  <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <i class="text-blue-600 text-2xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-code" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="code" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 mb-2" contenteditable="false">Tech Club</h3>
-                  <p class="text-gray-600 mb-4" contenteditable="false">Coding workshops, hackathons, and tech talks</p>
-                  <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-4">
-                      <span contenteditable="false">250 members</span>
-                      <span contenteditable="false">15 events/year</span>
-                  </div>
-                  <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors" contenteditable="false">
-                      Join Club
-                  </button>
-              </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <!-- Tech Club -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
+                <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="text-blue-600 text-2xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-code" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="code" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2" contenteditable="false">Tech Club</h3>
+                <p class="text-gray-600 mb-4" contenteditable="false">Coding workshops, hackathons, and tech talks</p>
+                <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-4">
+                    <span contenteditable="false">250 members</span>
+                    <span contenteditable="false">15 events/year</span>
+                </div>
+                <button onclick="joinClub('tech')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors" contenteditable="false">
+                    Join Club
+                </button>
+            </div>
 
-              <div class="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
-                  <div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <i class="text-pink-600 text-2xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-palette" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="palette" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3H344c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"></path></svg></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 mb-2" contenteditable="false">Arts Society</h3>
-                  <p class="text-gray-600 mb-4" contenteditable="false">Painting, sculpture, and creative exhibitions</p>
-                  <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-4">
-                      <span contenteditable="false">180 members</span>
-                      <span contenteditable="false">20 events/year</span>
-                  </div>
-                  <button class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-lg font-semibold transition-colors" contenteditable="false">
-                      Join Club
-                  </button>
-              </div>
+            <!-- Arts Society -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
+                <div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="text-pink-600 text-2xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-palette" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="palette" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3H344c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"></path></svg></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2" contenteditable="false">Arts Society</h3>
+                <p class="text-gray-600 mb-4" contenteditable="false">Painting, sculpture, and creative exhibitions</p>
+                <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-4">
+                    <span contenteditable="false">180 members</span>
+                    <span contenteditable="false">20 events/year</span>
+                </div>
+                <button onclick="joinClub('arts')" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-lg font-semibold transition-colors" contenteditable="false">
+                    Join Club
+                </button>
+            </div>
 
-              <div class="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
-                  <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <i class="text-green-600 text-2xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-dumbbell" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="dumbbell" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z"></path></svg></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 mb-2" contenteditable="false">Fitness Club</h3>
-                  <p class="text-gray-600 mb-4" contenteditable="false">Group workouts, sports, and wellness programs</p>
-                  <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-4">
-                      <span contenteditable="false">320 members</span>
-                      <span contenteditable="false">30 events/year</span>
-                  </div>
-                  <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold transition-colors" contenteditable="false">
-                      Join Club
-                  </button>
-              </div>
+            <!-- Fitness Club -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="text-green-600 text-2xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-dumbbell" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="dumbbell" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z"></path></svg></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2" contenteditable="false">Fitness Club</h3>
+                <p class="text-gray-600 mb-4" contenteditable="false">Group workouts, sports, and wellness programs</p>
+                <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-4">
+                    <span contenteditable="false">320 members</span>
+                    <span contenteditable="false">30 events/year</span>
+                </div>
+                <button onclick="joinClub('fitness')" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold transition-colors" contenteditable="false">
+                    Join Club
+                </button>
+            </div>
 
-              <div class="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
-                  <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <i class="text-yellow-600 text-2xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-music" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="music" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7v72V368c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V147L192 223.8V432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V200 128c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z"></path></svg></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 mb-2" contenteditable="false">Music Society</h3>
-                  <p class="text-gray-600 mb-4" contenteditable="false">Concerts, jam sessions, and music competitions</p>
-                  <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-4">
-                      <span contenteditable="false">200 members</span>
-                      <span contenteditable="false">25 events/year</span>
-                  </div>
-                  <button class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded-lg font-semibold transition-colors" contenteditable="false">
-                      Join Club
-                  </button>
-              </div>
-          </div>
+            <!-- Music Society -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
+                <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="text-yellow-600 text-2xl" data-fa-i2svg=""><svg class="svg-inline--fa fa-music" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="music" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7v72V368c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V147L192 223.8V432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V200 128c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z"></path></svg></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2" contenteditable="false">Music Society</h3>
+                <p class="text-gray-600 mb-4" contenteditable="false">Concerts, jam sessions, and music competitions</p>
+                <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-4">
+                    <span contenteditable="false">200 members</span>
+                    <span contenteditable="false">25 events/year</span>
+                </div>
+                <button onclick="joinClub('music')" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded-lg font-semibold transition-colors" contenteditable="false">
+                    Join Club
+                </button>
+            </div>
+        </div>
 
-          <div class="text-center">
-              <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors" contenteditable="false">
-                  View All Clubs
-              </button>
-          </div>
-      </div>
-  </section>
+        <div class="text-center">
+            <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors" contenteditable="false">
+                View All Clubs
+            </button>
+        </div>
+    </div>
+</section>
 
   <!-- EVENTS CALENDAR SECTION -->
   <section id="events-calendar" class="py-20 bg-white cursor-default-must">
@@ -1195,6 +1199,27 @@ html, body {
       </div>
   </footer>
 
+<script>
+    // Join Club - Navigate to club details page
+    function joinClub(clubId) {
+      // For demonstration, show an alert
+    //   In production, this would navigate to: window.location.href = `html.html?club=${clubId}`;
+    //   alert(`Joining ${clubId.charAt(0).toUpperCase() + clubId.slice(1)} Club! Redirecting to club details page...`);
+      
+    //   // Uncomment the line below in production:
+      window.location.href = `html.html?club=${clubId}`;
+    }
 
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 
 </body></html>
