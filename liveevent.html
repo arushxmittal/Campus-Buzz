@@ -1444,5 +1444,62 @@
             `;
             
             document.body.appendChild(modalOverlay);
- 
+  // Add event listeners for modal
+            document.getElementById('close-modal').addEventListener('click', closeModal);
+            document.getElementById('modal-cancel').addEventListener('click', closeModal);
+            document.getElementById('modal-overlay').addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+        }
+
+        function showModal(title, content, onConfirm) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-content').innerHTML = content;
+            document.getElementById('modal-overlay').classList.remove('hidden');
+            
+            const confirmBtn = document.getElementById('modal-confirm');
+            confirmBtn.onclick = function() {
+                if (onConfirm) onConfirm();
+                closeModal();
+            };
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.add('hidden');
+        }
+
+        // Event Registration Handler
+        function handleEventRegistration(button) {
+            const eventCard = button.closest('[class*="bg-white"][class*="rounded-xl"]');
+            const eventTitle = eventCard.querySelector('h3').textContent;
+            
+            showModal(
+                'Register for Event',
+                `<p>Are you sure you want to register for <strong>${eventTitle}</strong>?</p>
+                 <p class="mt-2 text-sm text-gray-500">You will receive a confirmation email shortly.</p>`,
+                function() {
+                    // Simulate registration
+                    button.textContent = 'Registered ✓';
+                    button.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                    button.classList.add('bg-green-500', 'hover:bg-green-600');
+                    button.disabled = true;
+                    
+                    // Show success message
+                    showNotification('Successfully registered for the event!', 'success');
+                }
+            );
+        }
+
+        // Event Detail Handler
+        function handleEventDetails(button) {
+            const eventCard = button.closest('[class*="bg-white"][class*="rounded-xl"]');
+            const eventTitle = eventCard.querySelector('h3').textContent;
+            const eventDescription = eventCard.querySelector('p[class*="text-gray-600"]').textContent;
+            const eventDate = eventCard.querySelector('[class*="text-3xl"][class*="font-bold"]').textContent;
+            const eventMonth = eventCard.querySelector('[class*="text-sm"][class*="text-gray-600"]').textContent;
+            const eventTime = eventCard.querySelector('[class*="text-sm"][class*="font-medium"][class*="text-gray-700"]').textContent;
+            const eventLocation = eventCard.querySelector('[class*="text-sm"][class*="text-gray-600"]:last-of-type').textContent;
+            const eventPrice = eventCard.querySelector('[class*="text-sm"][class*="font-semibold"]').textContent;
+            const attendeesCount = eventCard.querySelector('[class*="text-sm"][class*="text-gray-600"]').textContent;
+            
 </body></html> 
