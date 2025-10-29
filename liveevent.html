@@ -1234,6 +1234,72 @@
                 });
             });
 
+  // Clear filters button
+            const clearFiltersBtn = document.querySelector('button[class*="bg-gray-100"]');
+            if (clearFiltersBtn) {
+                clearFiltersBtn.addEventListener('click', function() {
+                    clearAllFilters();
+                });
+            }
+        }
+
+        // Filter Functionality
+        function initializeFilters() {
+            // Create filter state object
+            window.filterState = {
+                eventType: [],
+                location: [],
+                priceRange: [],
+                dateRange: null
+            };
+        }
+
+        function applyFilters() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const eventCards = document.querySelectorAll('[class*="bg-white"][class*="rounded-xl"]');
+            
+            // Reset filter state
+            window.filterState = {
+                eventType: [],
+                location: [],
+                priceRange: [],
+                dateRange: null
+            };
+
+            // Update filter state based on checked boxes
+            checkboxes.forEach(checkbox => {
+                const label = checkbox.nextElementSibling.textContent.trim();
+                const category = checkbox.closest('div').querySelector('h4').textContent.trim();
+                
+                if (category === 'Event Type') {
+                    window.filterState.eventType.push(label);
+                } else if (category === 'Location') {
+                    window.filterState.location.push(label);
+                } else if (category === 'Price Range') {
+                    window.filterState.priceRange.push(label);
+                }
+            });
+
+            // Filter events
+            filterEvents(eventCards);
+            updateEventCount();
+        }
+
+        function filterEvents(eventCards) {
+            eventCards.forEach(card => {
+                let shouldShow = true;
+                
+                // Check event type filter
+                if (window.filterState.eventType.length > 0) {
+                    const eventTags = Array.from(card.querySelectorAll('[class*="bg-blue-100"], [class*="bg-green-100"], [class*="bg-orange-100"], [class*="bg-purple-100"]'))
+                        .map(tag => tag.textContent.trim());
+                    
+                    const hasMatchingType = window.filterState.eventType.some(type => 
+                        eventTags.some(tag => tag.toLowerCase().includes(type.toLowerCase()))
+                    );
+                    
+                    if (!hasMatchingType) shouldShow = false;
+                }
 
 
 
