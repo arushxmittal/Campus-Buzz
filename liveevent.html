@@ -1371,6 +1371,78 @@
             updateEventCount();
         }
 
+ // Search Functionality
+        function initializeSearch() {
+            // Create search input if it doesn't exist
+            const searchContainer = document.querySelector('.flex.items-center.justify-between');
+            if (searchContainer && !document.querySelector('#event-search')) {
+                const searchInput = document.createElement('div');
+                searchInput.className = 'relative mb-6';
+                searchInput.innerHTML = `
+                    <input type="text" id="event-search" placeholder="Search events..." 
+                           class="w-full px-4 py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                `;
+                
+                // Insert search input before the events section
+                const eventsSection = document.querySelector('h2[class*="text-2xl"]');
+                if (eventsSection) {
+                    eventsSection.parentNode.insertBefore(searchInput, eventsSection);
+                }
+                
+                // Add search event listener
+                const searchInputElement = document.getElementById('event-search');
+                searchInputElement.addEventListener('input', function() {
+                    performSearch(this.value);
+                });
+            }
+        }
 
+        function performSearch(searchTerm) {
+            const eventCards = document.querySelectorAll('[class*="bg-white"][class*="rounded-xl"]');
+            const searchLower = searchTerm.toLowerCase();
+            
+            eventCards.forEach(card => {
+                const cardText = card.textContent.toLowerCase();
+                const shouldShow = searchLower === '' || cardText.includes(searchLower);
+                
+                if (shouldShow) {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            updateEventCount();
+        }
+
+        // Modal Functionality
+        function initializeModals() {
+            // Create modal overlay
+            const modalOverlay = document.createElement('div');
+            modalOverlay.id = 'modal-overlay';
+            modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 hidden';
+            modalOverlay.innerHTML = `
+                <div class="flex items-center justify-center min-h-screen p-4">
+                    <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 id="modal-title" class="text-2xl font-bold text-gray-800"></h3>
+                                <button id="close-modal" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                            </div>
+                            <div id="modal-content" class="text-gray-600"></div>
+                            <div class="mt-6 flex justify-end space-x-3">
+                                <button id="modal-cancel" class="px-4 py-2 border border-gray-200 text-gray-600 rounded-lg hover:bg-gray-50">Cancel</button>
+                                <button id="modal-confirm" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modalOverlay);
  
 </body></html> 
