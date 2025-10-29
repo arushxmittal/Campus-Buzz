@@ -1567,5 +1567,83 @@
                 }
             );
         }
-        
+     // Enrollment Handler
+        function handleEnrollment(eventTitle) {
+            showModal(
+                'Enroll in Event',
+                `<div class="space-y-4">
+                    <p>You're about to enroll in <strong>${eventTitle}</strong></p>
+                    
+                    <div class="bg-yellow-50 p-3 rounded-lg">
+                        <h4 class="font-medium text-yellow-800 mb-2">Enrollment Benefits:</h4>
+                        <ul class="text-sm text-yellow-700 space-y-1">
+                            <li>• Access to event materials</li>
+                            <li>• Pre-event networking opportunities</li>
+                            <li>• Exclusive resources and handouts</li>
+                            <li>• Post-event follow-up sessions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                        <h4 class="font-medium text-gray-700 mb-2">Next Steps:</h4>
+                        <ol class="text-sm text-gray-600 space-y-1">
+                            <li>1. You'll receive a confirmation email</li>
+                            <li>2. Event details will be added to your calendar</li>
+                            <li>3. Access to event materials will be provided</li>
+                            <li>4. Reminder notifications will be sent</li>
+                        </ol>
+                    </div>
+                </div>`,
+                function() {
+                    // Simulate enrollment process
+                    showNotification('Enrollment successful! Check your email for confirmation.', 'success');
+                    
+                    // Update the enroll button
+                    const enrollButtons = document.querySelectorAll('button');
+                    enrollButtons.forEach(btn => {
+                        if (btn.textContent.includes('Enroll') || btn.textContent.includes('Register')) {
+                            btn.textContent = 'Enrolled ✓';
+                            btn.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                            btn.classList.add('bg-green-500', 'hover:bg-green-600');
+                            btn.disabled = true;
+                        }
+                    });
+                }
+            );
+        }
+
+        // Event Share Handler
+        function handleEventShare(button) {
+            const eventCard = button.closest('[class*="bg-white"][class*="rounded-xl"]');
+            const eventTitle = eventCard.querySelector('h3').textContent;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: eventTitle,
+                    text: `Check out this event: ${eventTitle}`,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    showNotification('Event link copied to clipboard!', 'success');
+                });
+            }
+        }
+
+        // Add to Calendar Handler
+        function handleAddToCalendar(button) {
+            const eventCard = button.closest('[class*="bg-white"][class*="rounded-xl"]');
+            const eventTitle = eventCard.querySelector('h3').textContent;
+            const eventDate = eventCard.querySelector('[class*="text-3xl"][class*="font-bold"]').textContent;
+            
+            showModal(
+                'Add to Calendar',
+                `<p>Add <strong>${eventTitle}</strong> to your calendar?</p>
+                 <p class="mt-2 text-sm text-gray-500">Date: ${eventDate}</p>`,
+                function() {
+                    showNotification('Event added to calendar!', 'success');
+                }
+            );
+        }   
 </body></html> 
