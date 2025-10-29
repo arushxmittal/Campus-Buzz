@@ -1796,4 +1796,70 @@
             }, 3000);
         }
 
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Escape key to close modal
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+            
+            // Ctrl/Cmd + K to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                const searchInput = document.getElementById('event-search');
+                if (searchInput) {
+                    searchInput.focus();
+                }
+            }
+        });
+
+        // Responsive behavior
+        function handleResize() {
+            const eventCards = document.querySelectorAll('[class*="bg-white"][class*="rounded-xl"]');
+            
+            if (window.innerWidth < 768) {
+                // Mobile view adjustments
+                eventCards.forEach(card => {
+                    card.style.marginBottom = '1rem';
+                });
+            } else {
+                // Desktop view adjustments
+                eventCards.forEach(card => {
+                    card.style.marginBottom = '';
+                });
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initial call
+
+        // Performance optimization: Debounce search
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Apply debouncing to search
+        const debouncedSearch = debounce(performSearch, 300);
+        
+        // Update search input event listener to use debounced version
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('event-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    debouncedSearch(this.value);
+                });
+            }
+        });
+
+        console.log('All JavaScript functionality initialized successfully!');
+    </script>
+
 </body></html> 
