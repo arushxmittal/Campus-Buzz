@@ -1501,5 +1501,71 @@
             const eventLocation = eventCard.querySelector('[class*="text-sm"][class*="text-gray-600"]:last-of-type').textContent;
             const eventPrice = eventCard.querySelector('[class*="text-sm"][class*="font-semibold"]').textContent;
             const attendeesCount = eventCard.querySelector('[class*="text-sm"][class*="text-gray-600"]').textContent;
+        
+    // Get event tags
+            const tags = Array.from(eventCard.querySelectorAll('[class*="bg-blue-100"], [class*="bg-green-100"], [class*="bg-orange-100"], [class*="bg-purple-100"]'))
+                .map(tag => tag.textContent.trim());
             
+            const detailContent = `
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600">${eventDate}</div>
+                            <div class="text-sm text-gray-600">${eventMonth}</div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">${eventTitle}</h3>
+                            <p class="text-gray-600">${eventDescription}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <div class="text-sm font-medium text-gray-700">Date & Time</div>
+                            <div class="text-sm text-gray-600">${eventDate} ${eventMonth} at ${eventTime}</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <div class="text-sm font-medium text-gray-700">Location</div>
+                            <div class="text-sm text-gray-600">${eventLocation}</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <div class="text-sm font-medium text-gray-700">Price</div>
+                            <div class="text-sm text-gray-600">${eventPrice}</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg">
+                            <div class="text-sm font-medium text-gray-700">Attendees</div>
+                            <div class="text-sm text-gray-600">${attendeesCount}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 rounded-lg">
+                        <div class="text-sm font-medium text-gray-700 mb-2">Event Tags</div>
+                        <div class="flex flex-wrap gap-2">
+                            ${tags.map(tag => `<span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-800 mb-2">What to Expect:</h4>
+                        <ul class="text-sm text-blue-700 space-y-1">
+                            <li>• Interactive sessions with industry experts</li>
+                            <li>• Networking opportunities with like-minded professionals</li>
+                            <li>• Hands-on workshops and practical demonstrations</li>
+                            <li>• Q&A sessions with speakers</li>
+                            <li>• Certificate of participation</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            showModal(
+                'Event Details',
+                detailContent,
+                function() {
+                    // Handle enrollment from detail modal
+                    handleEnrollment(eventTitle);
+                }
+            );
+        }
+        
 </body></html> 
