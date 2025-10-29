@@ -1161,8 +1161,82 @@
     </div>
 </footer>
 
+ <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Campus Buzz Events Page Loaded');
+            
+            // Initialize all functionality
+            initializeEventHandlers();
+            initializeFilters();
+            initializeSearch();
+            initializeModals();
+            initializeAnimations();
+            initializeFormValidation();
+            
+            // Add smooth scrolling for better UX
+            document.documentElement.style.scrollBehavior = 'smooth';
+        });
+
+        // Event Handlers
+        function initializeEventHandlers() {
+            // View toggle buttons
+            const viewButtons = document.querySelectorAll('button[class*="bg-blue-500"], button[class*="bg-white"]');
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active state from all buttons
+                    viewButtons.forEach(btn => {
+                        btn.classList.remove('bg-blue-500', 'text-white');
+                        btn.classList.add('bg-white', 'text-gray-600', 'hover:bg-gray-50');
+                    });
+                    
+                    // Add active state to clicked button
+                    this.classList.remove('bg-white', 'text-gray-600', 'hover:bg-gray-50');
+                    this.classList.add('bg-blue-500', 'text-white');
+                    
+                    // Update content based on selected view
+                    updateEventView(this.textContent.trim());
+                });
+            });
+
+            // Event action buttons (Register, Share, Enroll, View Details, etc.)
+            const actionButtons = document.querySelectorAll('button[class*="bg-blue-500"], button[class*="border-gray-200"], button[class*="bg-green-500"], button[class*="bg-purple-500"], button[class*="bg-orange-500"]');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const buttonText = this.textContent.trim().toLowerCase();
+                    
+                    if (buttonText === 'register' || buttonText.includes('register')) {
+                        handleEventRegistration(this);
+                    } else if (buttonText === 'share' || buttonText.includes('share')) {
+                        handleEventShare(this);
+                    } else if (buttonText === 'add to calendar' || buttonText.includes('calendar')) {
+                        handleAddToCalendar(this);
+                    } else if (buttonText === 'enroll' || buttonText.includes('enroll')) {
+                        const eventCard = this.closest('[class*="bg-white"][class*="rounded-xl"]');
+                        const eventTitle = eventCard ? eventCard.querySelector('h3').textContent : 'Event';
+                        handleEnrollment(eventTitle);
+                    } else if (buttonText === 'view details' || buttonText.includes('details') || buttonText.includes('view')) {
+                        handleEventDetails(this);
+                    } else if (buttonText === 'join' || buttonText.includes('join')) {
+                        handleEventRegistration(this);
+                    } else if (buttonText === 'attend' || buttonText.includes('attend')) {
+                        handleEventRegistration(this);
+                    }
+                });
+            });
+
+            // Quick filter checkboxes
+            const filterCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+            filterCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    applyFilters();
+                });
+            });
+
+
 
 
 
  
-</body></html>
+</body></html> 
