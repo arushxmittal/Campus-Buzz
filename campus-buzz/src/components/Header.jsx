@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faCalendarDays, faClock, faPlus, 
@@ -10,6 +10,39 @@ import profileImage from '../assets/photos/CUB4-Top-10-reasons-why-Chitkara-Univ
 function Header() {
   const navLinkClass = ({ isActive }) =>
     `font-medium transition-colors ${isActive ? 'text-purple-600' : 'text-gray-700 hover:text-purple-600'}`;
+
+  // --- MODIFIED: State for both date and time ---
+  const [currentDate, setCurrentDate] = useState('');
+  const [currentTime, setCurrentTime] = useState('');
+  
+  const location = useLocation();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('campusbuzz_user')));
+  const profileLink = user ? '/profile' : '/login';
+  
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('campusbuzz_user')));
+  }, [location]);
+
+  // --- MODIFIED: Effect to update date and time ---
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      setCurrentDate(now.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      }));
+      setCurrentTime(new Date().toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }));
+    };
+
+    updateDateTime(); // Set time immediately
+    const interval = setInterval(updateDateTime, 60000); // Update every 60 seconds
+
+    return () => clearInterval(interval); // Clean up interval on unmount
+  }, []);
 
   return (
     <header className="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -29,9 +62,12 @@ function Header() {
       </div>
       
       <div className="flex items-center space-x-4">
+        {/* --- MODIFIED: Show both date and time --- */}
         <div className="hidden md:flex items-center space-x-2 bg-gray-100 rounded-lg px-3 py-2">
           <FontAwesomeIcon icon={faClock} className="text-gray-500 text-sm" />
-          <span className="text-gray-600 text-sm font-medium">11:34 AM GMT+7</span>
+          <span className="text-gray-600 text-sm font-medium">
+            {currentDate} - {currentTime}
+          </span>
         </div>
         
         <div className="flex items-center space-x-3">
@@ -41,9 +77,13 @@ function Header() {
           </Link>
           
           <div className="flex items-center space-x-2">
-            <button className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all">
+            <Link 
+              to="/events" 
+              className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all"
+              aria-label="Search events"
+            >
               <FontAwesomeIcon icon={faMagnifyingGlass} className="text-gray-600" />
-            </button>
+            </Link>
             
             <div className="relative">
               <button className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all">
@@ -54,7 +94,7 @@ function Header() {
               </div>
             </div>
             
-            <Link to="/profile" className="w-10 h-10 rounded-lg overflow-hidden">
+            <Link to={profileLink} className="w-10 h-10 rounded-lg overflow-hidden">
               <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
             </Link>
           </div>

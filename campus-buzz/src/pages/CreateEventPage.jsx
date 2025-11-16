@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getEvents } from '../utils/eventUtils'; // Import getEvents to initialize
 
-// Helper function to format the new event
+// --- MODIFIED: Updated event formatting ---
 const formatNewEvent = (formData) => {
-  const dateObj = new Date(formData.date);
-  const day = dateObj.getDate() + 1; // JS date objects can be tricky with timezones
-  const month = dateObj.toLocaleString('default', { month: 'short' }).toUpperCase();
-  
   const categoryColors = {
     'Academic Workshop': { color: 'blue', tag: 'Academic' },
     'Cultural Festival': { color: 'purple', tag: 'Cultural' },
@@ -19,19 +16,17 @@ const formatNewEvent = (formData) => {
 
   return {
     id: Date.now(), // Unique ID
-    date: day,
-    month: month,
-    time: formData.time,
-    tz: 'LOCAL',
+    date: formData.date, // Store as "YYYY-MM-DD"
+    time: formData.time, // Store as "HH:MM"
     category: formData.category,
     colorClass: `from-${colors.color}-50 to-${colors.color}-100`,
     textClass: `text-${colors.color}-600`,
     tags: [{ name: colors.tag, color: `bg-${colors.color}-100 text-${colors.color}-800` }],
     title: formData.title,
     description: formData.description,
-    location: formData.location, // We'll add this field
-    attending: 0, // Starts with 0
-    duration: 'N/A',
+    location: formData.location,
+    image: formData.image,
+    attending: 0,
     buttonText: 'View Details',
     buttonColor: `bg-${colors.color}-500`,
     bookmarked: false,
@@ -46,6 +41,7 @@ function CreateEventPage() {
     time: '',
     location: '',
     category: '',
+    image: '',
   });
   const [errors, setErrors] = useState({});
   const [showSuccess, setShowSuccess] = useState(false);
@@ -56,6 +52,21 @@ function CreateEventPage() {
     setFormData(prevData => ({ ...prevData, [id]: value }));
     if (errors[id]) {
       setErrors(prevErrors => ({ ...prevErrors, [id]: null }));
+    }
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setFormData(prevData => ({ ...prevData, image: reader.result }));
+      };
+      reader.onerror = (error) => {
+        console.error('Error reading file:', error);
+        setErrors(prev => ({ ...prev, image: 'Failed to upload image' }));
+      };
     }
   };
 
@@ -74,22 +85,16 @@ function CreateEventPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      // 1. Format the new event
       const newEvent = formatNewEvent(formData);
-
-      // 2. Get existing events from localStorage (or create an empty list)
-      const allEvents = JSON.parse(localStorage.getItem('eventsList')) || [];
-
-      // 3. Add the new event to the list
+      
+      // --- MODIFIED: Use getEvents() to ensure list is initialized ---
+      const allEvents = getEvents(); 
       allEvents.push(newEvent);
-
-      // 4. Save the updated list back to localStorage
+      
       localStorage.setItem('eventsList', JSON.stringify(allEvents));
-
-      // 5. Show success and redirect
       setShowSuccess(true);
       setTimeout(() => {
-        navigate('/events'); // Navigate to the events page
+        navigate('/events');
       }, 2000);
     } else {
       alert('⚠️ Please fill in all required fields.');
@@ -103,7 +108,8 @@ function CreateEventPage() {
       <section className="max-w-4xl mx-auto my-12 bg-white rounded-2xl shadow-md p-8">
         <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Create a New Event</h2>
         <form id="eventForm" className="space-y-6" onSubmit={handleSubmit} noValidate>
-          <div>
+          {/* ... (form fields for title, description) ... */}
+           <div>
             <label htmlFor="title" className="block font-semibold text-gray-700 mb-2">Event Title</label>
             <input id="title" type="text" placeholder="Enter event title" value={formData.title} onChange={handleChange}
                    className={`w-full border rounded-lg px-4 py-2 focus:ring-2 outline-none ${errorClass('title')}`} />
@@ -141,6 +147,14 @@ function CreateEventPage() {
               <option>Technical Meetup</option>
               <option>Other</option>
             </select>
+          </div>
+          <div>
+            <label htmlFor="image" className="block font-semibold text-gray-700 mb-2">Cover Image</label>
+            <input id="image" type="file" accept="image/*" onChange={handleImageUpload}
+                   className={`w-full border rounded-lg px-4 py-2 focus:ring-2 outline-none file:mr-4 file:py-2 file:px-4
+                              file:rounded-full file:border-0 file:text-sm file:font-semibold
+                              file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100
+                              ${errorClass('image')}`} />
           </div>
           <div className="text-center">
             <button type="submit" className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-medium">Create Event</button>

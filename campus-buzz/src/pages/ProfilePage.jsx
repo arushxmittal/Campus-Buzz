@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // <-- Import useNavigate
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // <-- Import FontAwesomeIcon
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'; // <-- Import logout icon
 
 // --- NEW: A mini-card for the profile page ---
 const RegisteredEventCard = ({ event }) => (
@@ -12,7 +14,6 @@ const RegisteredEventCard = ({ event }) => (
       <div>
         <h3 className="font-bold text-gray-800">{event.title}</h3>
         <p className="text-sm text-gray-600">{event.time} {event.tz}</p>
-        {/* THIS IS THE FIX: Check if event.tags is an array and has items */}
         {Array.isArray(event.tags) && event.tags.length > 0 && (
             <span className={`${event.tags[0].color} text-xs font-medium px-2 py-1 rounded mt-2 inline-block`}>
             {event.tags[0].name}
@@ -29,8 +30,8 @@ const RegisteredEventCard = ({ event }) => (
 function ProfilePage() {
   const [myEvents, setMyEvents] = useState([]);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate(); // <-- Add navigate hook
 
-  // Load user info and registered events from localStorage when page loads
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('campusbuzz_user'));
     if (storedUser) {
@@ -39,11 +40,18 @@ function ProfilePage() {
     
     const storedEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
     setMyEvents(storedEvents);
-  }, []); // Empty array means this runs only once
+  }, []);
+
+  // --- NEW: Logout Handler ---
+  const handleLogout = () => {
+    localStorage.removeItem('campusbuzz_user');
+    localStorage.removeItem('myEvents'); // Clear registered events too
+    alert('You have been logged out.');
+    navigate('/'); // Redirect to home page
+  };
 
   if (!user) {
     return (
-      // This is shown if the user is not logged in
       <div className="container mx-auto p-8 my-12 text-center">
         <h1 className="text-2xl font-bold mb-4">Please log in to see your profile.</h1>
         <Link to="/login" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium">
@@ -53,12 +61,21 @@ function ProfilePage() {
     );
   }
 
-  // This is shown if the user IS logged in
   return (
     <div className="container mx-auto p-8 my-12">
-      <h1 className="text-4xl font-bold text-gray-800 mb-6">
-        Welcome, {user.name}!
-      </h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-4xl font-bold text-gray-800">
+          Welcome, {user.name}!
+        </h1>
+        {/* --- NEW: Logout Button --- */}
+        <button
+          onClick={handleLogout}
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center"
+        >
+          <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
+          Logout
+        </button>
+      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Registered Events */}

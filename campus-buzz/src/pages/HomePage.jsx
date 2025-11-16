@@ -1,21 +1,84 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faCalendarCheck, faMagnifyingGlass, faUsers, 
-  faCode, faPalette, faDumbbell, faMusic 
+  faUsers, faCode
 } from '@fortawesome/free-solid-svg-icons';
+import { getIcon, initialClubData } from '../utils/clubUtils';
+import { categorizeEvents } from '../utils/eventUtils'; // --- IMPORT NEW UTIL ---
 
-// Note: Your index.html and html2.html were very similar. 
-// I'm using the content from html2.html as it seems like a richer homepage.
+// Card component for the homepage
+const EventCardHome = ({ event }) => {
+  // --- NEW: Parse date ---
+  const dateObj = new Date(event.date + 'T00:00:00');
+  const day = dateObj.getUTCDate();
+  const month = dateObj.toLocaleString('default', { month: 'short' }).toUpperCase();
+  
+  return (
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover flex flex-col">
+      {event.image && (
+        <img src={event.image} alt={event.title} className="w-full h-40 object-cover" />
+      )}
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="text-lg font-bold text-gray-800 mb-2 truncate">{event.title}</h3>
+        <p className="text-gray-600 text-sm mb-3">
+          {/* --- MODIFIED: Use new date vars --- */}
+          {month} {day} - {event.location}
+        </p>
+        <Link 
+          to={`/event/${event.id}`} 
+          className="w-full text-center block bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg text-sm font-semibold transition-colors mt-auto"
+        >
+          View Details
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+// Club Card for Homepage
+const ClubCardHome = ({ club }) => {
+  const navigate = useNavigate();
+  const color = club.color || 'blue';
+  
+  return (
+    <div className="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
+      <div className={`w-20 h-20 bg-${color}-100 rounded-full flex items-center justify-center mx-auto mb-4`}>
+        <FontAwesomeIcon icon={getIcon(club.icon)} className={`text-${color}-600 text-2xl`} />
+      </div>
+      <h3 className="text-xl font-bold text-gray-800 mb-2">{club.name}</h3>
+      <p className="text-gray-600 mb-4 h-12 line-clamp-2">{club.tagline}</p>
+      <button 
+        onClick={() => navigate(`/club/${club.id}`)} 
+        className={`w-full bg-${color}-600 hover:bg-${color}-700 text-white py-2 rounded-lg font-semibold transition-colors`}
+      >
+        Join Club
+      </button>
+    </div>
+  );
+};
+
 
 function HomePage() {
   const navigate = useNavigate();
+  const [latestEvents, setLatestEvents] = useState([]);
+  const [clubs, setClubs] = useState([]);
 
-  // Replaces the JavaScript functions
-  const joinClub = (clubId) => {
-    navigate(`/club/${clubId}`); // Navigate to the club detail page
-  };
+  useEffect(() => {
+    // --- MODIFIED: Load and categorize events ---
+    const { upcomingEvents } = categorizeEvents();
+    // Get the 3 SOONEST upcoming events
+    setLatestEvents(upcomingEvents.slice(0, 3));
+
+    // Load clubs
+    let clubsList = JSON.parse(localStorage.getItem('clubsList'));
+    if (!clubsList || clubsList.length === 0) {
+      localStorage.setItem('clubsList', JSON.stringify(initialClubData));
+      clubsList = initialClubData;
+    }
+    setClubs(clubsList.slice(0, 4));
+
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -28,7 +91,8 @@ function HomePage() {
     <div className="bg-gray-50">
       {/* HERO SECTION */}
       <section id="hero-intro" className="gradient-bg h-[600px] flex items-center">
-        <div className="max-w-7xl mx-auto px-6 py-20">
+        {/* ... (rest of hero) ... */}
+         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-white">
               <h1 className="text-5xl font-bold mb-6 leading-tight">
@@ -68,7 +132,8 @@ function HomePage() {
 
       {/* LIVE EVENTS */}
       <section id="live-events" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        {/* ... (static live events section) ... */}
+         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-red-100 text-red-600 px-4 py-2 rounded-full mb-4">
               <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
@@ -108,8 +173,8 @@ function HomePage() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">48-Hour Hackathon Challenge</h3>
-                <p className="text-gray-600 mb-4">Build innovative solutions for campus problems.</p>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Guest Lecture: AI Ethics</h3>
+                <p className="text-gray-600 mb-4">Dr. Eva Rostova discusses the future of AI.</p>
                 <Link to="/live-event" className="w-full text-center block bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition-colors">
                   Join Live Stream
                 </Link>
@@ -126,8 +191,8 @@ function HomePage() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">48-Hour Hackathon Challenge</h3>
-                <p className="text-gray-600 mb-4">Build innovative solutions for campus problems.</p>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Music Club: Open Mic</h3>
+                <p className="text-gray-600 mb-4">Talented students perform live at the cafe.</p>
                 <Link to="/live-event" className="w-full text-center block bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition-colors">
                   Join Live Stream
                 </Link>
@@ -143,100 +208,33 @@ function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-6">Upcoming Events</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Innovation Science Fair</h3>
-                <p className="text-gray-600 text-sm mb-3">Showcase cutting-edge research projects</p>
-                <Link to="/events" className="w-full text-center block bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg text-sm font-semibold transition-colors">
-                  Register Now
-                </Link>
-              </div>
-            </div>
-            {/* Add more upcoming event cards */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Innovation Science Fair</h3>
-                <p className="text-gray-600 text-sm mb-3">Showcase cutting-edge research projects</p>
-                <Link to="/events" className="w-full text-center block bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg text-sm font-semibold transition-colors">
-                  Register Now
-                </Link>
-              </div>
-            </div>
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Innovation Science Fair</h3>
-                <p className="text-gray-600 text-sm mb-3">Showcase cutting-edge research projects</p>
-                <Link to="/events" className="w-full text-center block bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg text-sm font-semibold transition-colors">
-                  Register Now
-                </Link>
-              </div>
-            </div>
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Innovation Science Fair</h3>
-                <p className="text-gray-600 text-sm mb-3">Showcase cutting-edge research projects</p>
-                <Link to="/events" className="w-full text-center block bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg text-sm font-semibold transition-colors">
-                  Register Now
-                </Link>
-              </div>
-            </div>
-            
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {latestEvents.length > 0 ? (
+              latestEvents.map(event => (
+                <EventCardHome key={event.id} event={event} />
+              ))
+            ) : (
+              <p className="text-gray-600 col-span-3 text-center">No upcoming events. <Link to="/create-event" className="text-purple-600">Create one!</Link></p>
+            )}
+          </div>
+          <div className="text-center mt-12">
+            <Link to="/events" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              View All Upcoming Events
+            </Link>
           </div>
         </div>
       </section>
 
       {/* FEATURED CLUBS */}
-      <section id="featured-clubs" className="py-20 bg-gray-50">
+      <section id="featured-clubs" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-6">Featured Clubs & Organizations</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {/* Tech Club */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FontAwesomeIcon icon={faCode} className="text-blue-600 text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Tech Club</h3>
-              <p className="text-gray-600 mb-4">Coding workshops, hackathons, and tech talks</p>
-              <button onClick={() => joinClub('tech')} className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors">
-                Join Club
-              </button>
-            </div>
-            {/* Arts Society */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
-              <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FontAwesomeIcon icon={faPalette} className="text-pink-600 text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Arts Society</h3>
-              <p className="text-gray-600 mb-4">Painting, sculpture, and creative exhibitions</p>
-              <button onClick={() => joinClub('arts')} className="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-lg font-semibold transition-colors">
-                Join Club
-              </button>
-            </div>
-            {/* Fitness Club */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FontAwesomeIcon icon={faDumbbell} className="text-green-600 text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Fitness Club</h3>
-              <p className="text-gray-600 mb-4">Group workouts, sports, and wellness programs</p>
-              <button onClick={() => joinClub('fitness')} className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold transition-colors">
-                Join Club
-              </button>
-            </div>
-            {/* Music Society */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 text-center card-hover">
-              <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FontAwesomeIcon icon={faMusic} className="text-yellow-600 text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Music Society</h3>
-              <p className="text-gray-600 mb-4">Concerts, jam sessions, and music competitions</p>
-              <button onClick={() => joinClub('music')} className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded-lg font-semibold transition-colors">
-                Join Club
-              </button>
-            </div>
+            {clubs.map(club => (
+              <ClubCardHome key={club.id} club={club} />
+            ))}
           </div>
           <div className="text-center">
             <Link to="/clubs" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">

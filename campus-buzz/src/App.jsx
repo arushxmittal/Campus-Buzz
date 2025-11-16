@@ -12,6 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 import AuthPage from './pages/AuthPage';
 import CalendarPage from './pages/CalendarPage';
 import EventDetailPage from './pages/EventDetailPage'; 
+import CreateClubPage from './pages/CreateClubPage'; 
 
 // Import your reusable components
 import Header from './components/Header';
@@ -46,10 +47,14 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/event/:eventId" element={<EventDetailPage />} /> 
+        
+        {/* --- THIS WAS THE MISSING LINE --- */}
         <Route path="/clubs" element={<ClubsPage />} />
+        
         <Route path="/club/:clubId" element={<ClubDetailPage />} />
         <Route path="/live-event" element={<LiveEventPage />} />
         <Route path="/create-event" element={<CreateEventPage />} />
+        <Route path="/create-club" element={<CreateClubPage />} />
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFoundPage />} />

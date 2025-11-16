@@ -1,64 +1,72 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom'; // This line is now correct
+import { useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faCode, faPalette, faDumbbell, faMusic,
   faUsers, faCalendar, faStar, faInfoCircle,
   faCheckCircle, faGift, faGraduationCap, faNetworkWired,
-  faBriefcase, faCertificate, faCalendarAlt, faUserTie,
+  faBriefcase, faCalendarAlt, faUserTie,
   faUserPlus, faPaperPlane
 } from '@fortawesome/free-solid-svg-icons';
-
-// Mock club data
-const clubDatabase = {
-  'tech': {
-    name: 'Tech Club', icon: faCode, color: 'blue',
-    tagline: 'Innovation • Collaboration • Technology',
-    members: '250 Members', events: '15 Events/Year',
-    description: 'The Tech Club is a vibrant community of students passionate about technology, coding, and innovation. We organize hackathons, coding workshops, tech talks, and collaborative projects to help members enhance their technical skills and stay updated with the latest technological trends.'
-  },
-  'arts': {
-    name: 'Arts Society', icon: faPalette, color: 'pink',
-    tagline: 'Creativity • Expression • Culture',
-    members: '180 Members', events: '20 Events/Year',
-    description: 'The Arts Society celebrates creativity in all its forms. From painting and sculpture to digital art and photography, we provide a platform for artists to showcase their work, learn new techniques, and connect with fellow creative minds through exhibitions and workshops.'
-  },
-  'fitness': {
-    name: 'Fitness Club', icon: faDumbbell, color: 'green',
-    tagline: 'Health • Wellness • Strength',
-    members: '320 Members', events: '30 Events/Year',
-    description: 'The Fitness Club promotes healthy living through group workouts, sports activities, and wellness programs. We organize fitness challenges, yoga sessions, nutrition workshops, and sports tournaments to help members achieve their fitness goals.'
-  },
-  'music': {
-    name: 'Music Society', icon: faMusic, color: 'yellow',
-    tagline: 'Rhythm • Harmony • Performance',
-    members: '200 Members', events: '25 Events/Year',
-    description: 'The Music Society brings together musicians, singers, and music enthusiasts. We organize concerts, jam sessions, music production workshops, and competitions, providing opportunities for members to perform, collaborate, and grow their musical talents.'
-  }
-};
+import { getIcon } from '../utils/clubUtils';
+import emailjs from '@emailjs/browser';
 
 function ClubDetailPage() {
   const { clubId } = useParams();
   const navigate = useNavigate();
   const [club, setClub] = useState(null);
 
+  // --- 1. GET YOUR KEYS SECURELY ---
+  const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateID = import.meta.env.VITE_EMAILJS_CLUB_TEMPLATE_ID; // Use the club template
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
   useEffect(() => {
-    if (clubId && clubDatabase[clubId]) {
-      setClub(clubDatabase[clubId]);
+    const allClubs = JSON.parse(localStorage.getItem('clubsList')) || [];
+    const foundClub = allClubs.find(c => c.id === clubId);
+    
+    if (foundClub) {
+      setClub(foundClub);
     } else {
-      // Handle club not found, maybe redirect
       navigate('/clubs'); 
     }
   }, [clubId, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('🎉 Application submitted successfully! You will receive a confirmation email shortly.');
-    navigate('/clubs'); // Go back to clubs page
+    
+    const userEmail = e.target.elements.joinEmail.value;
+    const userName = e.target.elements.joinName.value;
+
+    // --- 2. CHECK IF KEYS ARE LOADED ---
+    if (!serviceID || !templateID || !publicKey) {
+      console.error("EmailJS environment variables are missing. Did you restart the Vite server?");
+      alert("Application failed: Email service is not configured.");
+      return;
+    }
+
+    const templateParams = {
+      user_name: userName,
+      user_email: userEmail,
+      club_name: club.name,
+    };
+
+    // --- 3. SEND EMAIL ---
+    emailjs.send(serviceID, templateID, templateParams, publicKey)
+    .then((response) => {
+       console.log('SUCCESS!', response.status, response.text);
+       alert(`🎉 Application submitted!\n\nA confirmation email has been sent to ${userEmail}.`);
+    })
+    .catch((err) => {
+       console.error('FAILED TO SEND EMAIL...', err);
+       alert(`🎉 Application submitted successfully!\n\n(We couldn't send a confirmation email.)`);
+    })
+    .finally(() => {
+       navigate('/clubs');
+    });
   };
 
   if (!club) {
-    return <div>Loading club...</div>; // Show loading state
+    return <div className="text-center p-12">Loading club...</div>;
   }
 
   // Helper classes for dynamic styling
@@ -75,7 +83,7 @@ function ClubDetailPage() {
           <div className={`bg-gradient-to-r ${bgClass} h-48 relative`}>
             <div className="absolute -bottom-16 left-8">
               <div className={`w-32 h-32 ${iconBgClass} rounded-2xl flex items-center justify-center border-4 border-white shadow-xl`}>
-                <FontAwesomeIcon icon={club.icon} className={`${colorClass} text-5xl`} />
+                <FontAwesomeIcon icon={getIcon(club.icon)} className={`${colorClass} text-5xl`} />
               </div>
             </div>
           </div>
@@ -89,11 +97,11 @@ function ClubDetailPage() {
                 <div className="flex flex-wrap gap-4 mb-6">
                   <div className="flex items-center space-x-2 text-gray-600">
                     <FontAwesomeIcon icon={faUsers} />
-                    <span id="memberCount">{club.members}</span>
+                    <span id="memberCount">{club.members} Members</span>
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600">
                     <FontAwesomeIcon icon={faCalendar} />
-                    <span id="eventCount">{club.events}</span>
+                    <span id="eventCount">{club.events} Events/Year</span>
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600">
                     <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
@@ -167,7 +175,7 @@ function ClubDetailPage() {
            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <FontAwesomeIcon icon={faCalendarAlt} className="text-blue-600 mr-3" />Upcoming Events
           </h2>
-          {/* ... event cards ... */}
+           <p className="text-gray-500">(Event list coming soon...)</p>
         </div>
 
         {/* Leadership Team */}
@@ -175,7 +183,7 @@ function ClubDetailPage() {
            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <FontAwesomeIcon icon={faUserTie} className="text-purple-600 mr-3" />Leadership Team
           </h2>
-          {/* ... leadership profiles ... */}
+           <p className="text-gray-500">(Leadership profiles coming soon...)</p>
         </div>
 
         {/* Join Form */}
@@ -192,7 +200,7 @@ function ClubDetailPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
-                <input type="text" required className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none transition-colors" placeholder="Enter your full name" />
+                <input id="joinName" type="text" required className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none transition-colors" placeholder="Enter your full name" />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Student ID *</label>
@@ -202,7 +210,7 @@ function ClubDetailPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
-                <input type="email" required className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none transition-colors" placeholder="your.email@university.edu" />
+                <input id="joinEmail" type="email" required className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none transition-colors" placeholder="your.email@university.edu" />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
@@ -227,7 +235,6 @@ function ClubDetailPage() {
             </div>
           </form>
         </div>
-
       </div>
     </section>
   );
