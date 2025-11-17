@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // <-- THE FIX IS HERE
+import { Link, useNavigate } from 'react-router-dom'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faPlus, faCompass, faChevronLeft, faChevronRight, 
@@ -10,14 +10,14 @@ import {
 
 // Data for club cards
 const clubData = [
-  { id: 'tech', name: 'Python Developers', icon: faCode, color: 'blue', members: 1234, events: 8, location: 'Seattle, WA' },
-  { id: 'fitness', name: 'Morning Runners', icon: faPersonRunning, color: 'green', members: 567, events: 15, location: 'Central Park, NY' },
-  { id: 'books', name: 'Sci-Fi Book Club', icon: faBook, color: 'purple', members: 342, events: 6, location: 'Chicago, IL' },
-  { id: 'food', name: 'Foodie Adventures', icon: faUtensils, color: 'orange', members: 789, events: 12, location: 'Miami, FL' },
-  { id: 'photo', name: 'Photography Club', icon: faCamera, color: 'red', members: 456, events: 9, location: 'Portland, OR' },
-  { id: 'biz', name: 'Entrepreneurs Network', icon: faBriefcase, color: 'indigo', members: 923, events: 18, location: 'Austin, TX' },
-  { id: 'music', name: 'Jazz Enthusiasts', icon: faMusic, color: 'pink', members: 234, events: 7, location: 'New Orleans, LA' },
-  { id: 'games', name: 'Board Game Society', icon: faGamepad, color: 'teal', members: 678, events: 14, location: 'Denver, CO' },
+  { id: 'tech', name: 'IEEE-CIET', icon: faCode, color: 'blue', members: 1234, events: 8, location: 'CHITKARA' },
+  { id: 'fitness', name: 'CODING-NINJA', icon: faPersonRunning, color: 'green', members: 567, events: 15, location: 'CHITKARA' },
+  { id: 'books', name: 'CSE SPORTS Club', icon: faBook, color: 'purple', members: 342, events: 6, location: 'CHITKARA' },
+  { id: 'food', name: 'IEI CLUB', icon: faUtensils, color: 'orange', members: 789, events: 12, location: 'CHITKARA' },
+  { id: 'photo', name: 'C2S2', icon: faCamera, color: 'red', members: 456, events: 9, location: 'CHITKARA' },
+  { id: 'biz', name: 'MERIDIAN', icon: faBriefcase, color: 'indigo', members: 923, events: 18, location: 'CHITKARA' },
+  { id: 'music', name: 'DGIT', icon: faMusic, color: 'pink', members: 234, events: 7, location: 'CHITKARA' },
+  { id: 'games', name: 'OSA', icon: faGamepad, color: 'teal', members: 678, events: 14, location: 'CHITKARA' },
 ];
 
 // Reusable Club Card Component

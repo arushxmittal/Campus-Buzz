@@ -165,7 +165,7 @@ function HomePage() {
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border-2 border-red-200">
               <div className="relative">
                 <div className="h-48 overflow-hidden">
-                  <img className="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/1b2b006502-3aebb2febf10405b561b.png" alt="hackathon" />
+                  <img className="w-full h-full object-cover" src="https://assets.visme.co/templates/banners/thumbnails/i_AI-Poster_full.jpg" alt="hackathon" />
                 </div>
                 <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
                   <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
@@ -183,7 +183,7 @@ function HomePage() {
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover border-2 border-red-200">
               <div className="relative">
                 <div className="h-48 overflow-hidden">
-                  <img className="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/1b2b006502-3aebb2febf10405b561b.png" alt="hackathon" />
+                  <img className="w-full h-full object-cover" src="https://img.freepik.com/free-vector/flat-design-open-mic-poster-design_23-2149460738.jpg" alt="hackathon" />
                 </div>
                 <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
                   <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
